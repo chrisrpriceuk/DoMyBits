@@ -8,8 +8,8 @@ import time
 def main():
     config = ConfigParser.ConfigParser()
     config.read("config.cnf")
-    wait_int = int(config.get('DAEMON','wakeup'))
-    if config.getboolean('DAEMON','debug') == True:
+    wait_int = int(config.get('daemon','wakeup'))
+    if config.getboolean('daemon','debug') == True:
         debug("Daemon started in full debug mode")
     lastnow = datetime.now()
     while True:
@@ -29,7 +29,7 @@ def debug(message):
     return
 
 def checkevents(config):
-    if config.getboolean('DAEMON','debug') == True:
+    if config.getboolean('daemon','debug') == True:
         debug("Checking Events")
     return
 
