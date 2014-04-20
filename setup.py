@@ -21,6 +21,7 @@ config.set("SMTP", "user", SMTP_USER)
 config.set("SMTP", "pass", base64.b64encode(SMTP_PASSWORD))
 config.add_section("DAEMON")
 config.set("DAEMON", "wakeup", DAEMON_WAKEUP_INT)
+config.set("DAEMON", "debug", "no")
 # write to file
 config_file = open('config.cnf', 'w')
 config.write(config_file)
