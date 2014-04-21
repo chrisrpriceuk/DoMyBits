@@ -14,3 +14,18 @@ The first objective of this project is to have IFTTT trigger on a Wemo motion se
 Get my drift?
 
 Obviously the concept could be adapted to do almost anything and I'm sure it will grow in time with additional python plugins.
+
+To Install
+==========
+
+This program can run under Windows or Linux
+
+1. Create a folder/Directory called "DoMyBits"
+2. Download the zip file and extract to that folder/Directory
+3. Run setup.py to enter your personal settings
+4. Run DoMyBitsDaemon.py
+
+To Schedule Events
+==================
+
+Run manageSchedule.py
