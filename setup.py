@@ -3,6 +3,7 @@
 import ConfigParser
 import sys
 import base64
+import MySQLdb as mdb
 
 config = ConfigParser.ConfigParser()
 # Get the users setup details
@@ -40,8 +41,24 @@ config.set("modules", "available_modules", "email_checker")
 config.add_section("email_checker")
 config.set("email_checker", "enabled", "yes")
 config.set("email_checker", "script", "emailchecker.py")
+
 # write to file
 config_file = open('config.cnf', 'w')
 config.write(config_file)
 config_file.close
 
+# setup database
+con = mdb.connect(MYSQL_HOST, MYSQL_ROOTU, MYSQL_ROOTP)
+cursor = con.cursor()
+sql = 'CREATE DATABASE ' + MYSQL_DATABASE_NAME
+cursor.execute(sql)
+sql = 'CREATE USER ' + "'" + MYSQL_USER + "'@'localhost' IDENTIFIED BY '" + MYSQL_PASS + "'"
+cursor.execute(sql)
+sql = 'USE ' + MYSQL_DATABASE_NAME
+cursor.execute(sql)
+sql = 'GRANT ALL ON ' + MYSQL_DATABASE_NAME + ".* TO '" + MYSQL_USER + "'@'localhost'"
+cursor.execute(sql)
+sql = "CREATE TABLE `" + MYSQL_DATABASE_NAME + "`.`" + MYSQL_TABLE_NAME + "` ( `ID` INT NULL AUTO_INCREMENT, `TYPE` VARCHAR(25) NULL, `TRIGGER` VARCHAR(25) NULL, `TRIGGERD` VARCHAR(255) NULL, `ACTIONR` VARCHAR(255) NULL, `ACTIONS` VARCHAR(255) NULL, `ACTIONB` VARCHAR(10000) NULL, `CREATED` DATETIME NULL, `LASTFIRED` DATETIME NULL, PRIMARY KEY (`ID`), UNIQUE INDEX `ID_UNIQUE` (`ID` ASC))"
+cursor.execute(sql)
+con.close()
+print "Setup Complete"

@@ -22,7 +22,8 @@ This program can run under Windows or Linux
 
 1. Create a folder/Directory called "DoMyBits"
 2. Download the zip file and extract to that folder/Directory
-3. Run setup.py to enter your personal settings
+3. Ensure python, Mysql & mysqldb are all installed
+3. Run setup.py to enter your personal settings and setup the database
 4. Run DoMyBitsDaemon.py
 
 To Schedule Events
